@@ -127,6 +127,8 @@ public class Bomber extends Character {
 
     @Override
     public void kill() {
+        bomberDieSound.play();
+        Game.getBackgoundSound().stop();
         if (!_alive) return;
         _alive = false;
     }
@@ -163,9 +165,9 @@ public class Bomber extends Character {
     @Override
     public boolean canMove(double x, double y) {
         // TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không
-        for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
-            double xt = ((_x + x) + c % 2 * 11) / Game.TILES_SIZE; //divide with tiles size to pass to tile coordinate/chia với kích thước gạch để chuyển sang tọa độ ô
-            double yt = ((_y + y) + c / 2 * 12 - 13) / Game.TILES_SIZE; //these values are the best from multiple tests
+        for (int c = 0; c < 4; c++) { //phát hiện xung đột cho mỗi góc của người chơi
+            double xt = ((_x + x) + c % 2 * 11) / Game.TILES_SIZE; //chia với kích thước gạch để chuyển sang tọa độ ô
+            double yt = ((_y + y) + c / 2 * 12 - 13) / Game.TILES_SIZE; //các giá trị này là tốt nhất từ nhiều thử nghiệm
 
             Entity a = _board.getEntity(xt, yt, this);
 
@@ -185,7 +187,7 @@ public class Bomber extends Character {
         if(ya > 0) _direction = 2;
         if(ya < 0) _direction = 0;
 
-        if(canMove(0, ya)) { //separate the moves for the player can slide when is colliding//tách các di chuyển cho người chơi có thể trượt khi va chạm
+        if(canMove(0, ya)) { //tách các di chuyển cho người chơi có thể trượt khi va chạm
             _y += ya;
         }
 
@@ -201,15 +203,15 @@ public class Bomber extends Character {
 
         if(e instanceof Flame) {
             kill();
-            bomberDieSound.play();
-            Game.getBackgoundSound().stop();
+            //bomberDieSound.play();
+            //Game.getBackgoundSound().stop();
             return false;
         }
 
         if(e instanceof Enemy) {
             kill();
-            bomberDieSound.play();
-            Game.getBackgoundSound().stop();
+            //bomberDieSound.play();
+            //Game.getBackgoundSound().stop();
             return true;
         }
 

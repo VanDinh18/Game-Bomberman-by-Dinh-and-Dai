@@ -64,65 +64,31 @@ public class FileLevelLoader extends LevelLoader {
 	public void createEntities() {
 		// TODO: tạo các Entity của màn chơi
 		// TODO: sau khi tạo xong, gọi _board.addEntity() để thêm Entity vào game
-
 		// TODO: phần code mẫu ở dưới để hướng dẫn cách thêm các loại Entity vào game
 		// TODO: hãy xóa nó khi hoàn thành chức năng load màn chơi từ tệp cấu hình
 
-//
-//		// thêm Bomber
-//		int xBomber = 1, yBomber = 1;
-//		_board.addCharacter( new Bomber(Coordinates.tileToPixel(xBomber), Coordinates.tileToPixel(yBomber) + Game.TILES_SIZE, _board) );
-//		Screen.setOffset(0, 0);
-//		_board.addEntity(xBomber + yBomber * _width, new Grass(xBomber, yBomber, Sprite.grass));
-
-//		// thêm Brick
-//		int xB = 3, yB = 1;
-//		_board.addEntity(xB + yB * _width,
-////				new LayeredEntity(xB, yB,
-////					new Grass(xB, yB, Sprite.grass),
-////					new Brick(xB, yB, Sprite.brick)
-////				)
-////		);
-//
-//		// thêm Item kèm Brick che phủ ở trên
-//		int xI = 1, yI = 2;
-//		_board.addEntity(xI + yI * _width,
-//				new LayeredEntity(xI, yI,
-//					new Grass(xI ,yI, Sprite.grass),
-//					new SpeedItem(xI, yI, Sprite.powerup_flames),
-//					new Brick(xI, yI, Sprite.brick)
-//				)
-//		);
-
-
-
-			for (int i = 0; i < getHeight(); i++) {
-				for (int j = 0; j < getWidth(); j++) {
-					addLevelEntity(_map[i][j].charAt(0), j, i);
-				}
+		for (int i = 0; i < getHeight(); i++) {
+			for (int j = 0; j < getWidth(); j++) {
+				addLevelEntity(_map[i][j].charAt(0), j, i);
 			}
-
-
+		}
 	}
 
 	public void addLevelEntity(char c, int x, int y){
 	    int pos = x + y * getWidth();
+
 	    switch(c) {
             //them Wall
             case '#':
                 _board.addEntity(pos, new Wall(x, y, Sprite.wall));
                 break;
+
             //them Bomber
             case 'p':
                 _board.addCharacter(new Bomber(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, _board));
                 Screen.setOffset(0, 0);
                 _board.addEntity(pos, new Grass(x, y, Sprite.grass));
                 break;
-//			case 'a':
-//				_board.addCharacter(new AutomaticBomber(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, _board));
-//				Screen.setOffset(0, 0);
-//				_board.addEntity(pos, new Grass(x, y, Sprite.grass));
-//				break;
 
             //them enermy
 			case '1':

@@ -91,6 +91,7 @@ public class Bomb extends AnimatedEntitiy {
 		Character a = _board.getCharacterAtExcluding((int)_x, (int)_y, null);
 		if(a != null)  {
 			a.kill();
+			//explosionBombSound.play();
 		}
 
 		_flames = new Flame[4];

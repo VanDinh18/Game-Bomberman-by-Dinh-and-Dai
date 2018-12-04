@@ -27,13 +27,13 @@ public class AIMedium extends AI {
 	public int calculateDirection() {
 		// TODO: cài đặt thuật toán tìm đường đi
 		if(collide(_board.getBomb())){
-			System.out.println("va cham voi bom");
 			return random.nextInt(4);
 		}
-		if(_bomber == null) {
 
+		if(_bomber == null) {
 			return random.nextInt(4);
 		}
+
 		int vertical = random.nextInt(2);
 
 		if(vertical == 1) {
