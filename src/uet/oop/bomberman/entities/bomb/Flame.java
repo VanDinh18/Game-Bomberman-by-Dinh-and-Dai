@@ -81,7 +81,7 @@ public class Flame extends Entity {
 
 			if(a instanceof Character) ++radius; //vụ nổ phải ở dưới Character
 
-			if(a.collide(this) == false) //cannot pass thru
+			if(a.collide(this) == false) //không cho đi qua
 				break;
 
 			++radius;

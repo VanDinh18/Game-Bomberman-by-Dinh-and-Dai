@@ -145,7 +145,6 @@ public class Game extends Canvas {
 			}
 			
 			if(_paused) {
-				//System.out.println("PAUSED !");
 				if(_screenDelay <= 0) {
 					_board.setShow(-1);
 					_paused = false;

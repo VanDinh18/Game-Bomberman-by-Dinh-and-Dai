@@ -94,9 +94,9 @@ public class Bomber extends Character {
         if(_input.space && Game.getBombRate() > 0 && _timeBetweenPutBombs < 0) {
 
             int xt = Coordinates.pixelToTile(_x + _sprite.getSize() / 2);
-            int yt = Coordinates.pixelToTile( (_y + _sprite.getSize() / 2) - _sprite.getSize() ); //subtract half player height and minus 1 y position
-
-            placeBomb(xt,yt);
+            int yt = Coordinates.pixelToTile( (_y + _sprite.getSize() / 2) - _sprite.getSize() ); //trừ một nửa chiều cao của người chơi và trừ đi 1 vị trí y
+            System.out.println(xt + " " + yt);
+            placeBomb(xt, yt);
             Game.addBombRate(-1);
 
             _timeBetweenPutBombs = 30;
@@ -108,7 +108,6 @@ public class Bomber extends Character {
         Bomb b = new Bomb(x, y, _board);
         _board.addBomb(b);
         placeBombSound.play();
-        System.out.println("Place Bomb!");
     }
 
     private void clearBombs() {
@@ -151,8 +150,6 @@ public class Bomber extends Character {
         if(_input.down) ya++;
         if(_input.left) xa--;
         if(_input.right) xa++;
-
-        //TODO: xử lý Bomber di chuyển tự động
 
         if(xa != 0 || ya != 0)  {
             move(xa * Game.getBomberSpeed(), ya * Game.getBomberSpeed());
@@ -203,15 +200,11 @@ public class Bomber extends Character {
 
         if(e instanceof Flame) {
             kill();
-            //bomberDieSound.play();
-            //Game.getBackgoundSound().stop();
             return false;
         }
 
         if(e instanceof Enemy) {
             kill();
-            //bomberDieSound.play();
-            //Game.getBackgoundSound().stop();
             return true;
         }
 
